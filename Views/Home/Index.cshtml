@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IQueryable<Book>
+
+@*Header for our home page as well as the for each to loop through and display the different books and their info with bootstrap styling to separate out the different books*@
+<header class="text-center">
+    <h1>Professor Hilton's Favorite Books:</h1>
+</header>
+
+<body class="text-center">
+    @foreach (var x in Model)
+    {
+        <div class="list-group-item text-left">
+            <h5>Book Title: @x.Title</h5>
+            <h6>Written By: @x.Author</h6>
+            <p>Publisher: @x.Publisher</p>
+            <p>ISBN #: @x.ISBN</p>
+            <p>Classifcation/Category: @x.Category</p>
+            <p>Price: @x.Price</p>
+
+        </div>
+    }
+</body>
+
+   
