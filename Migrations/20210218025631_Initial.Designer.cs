@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment5.Migrations
 {
     [DbContext(typeof(FavBooksContext))]
-    [Migration("20210217201257_Initial")]
+    [Migration("20210218025631_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace Assignment5.Migrations
 
                     b.Property<string>("AuthorLast")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AuthorMiddle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Category")

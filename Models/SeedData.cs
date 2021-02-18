@@ -38,7 +38,8 @@ namespace Assignment5.Models
                     new Book
                     {
                         Title = "Team of Rivals",
-                        AuthorFirst = "Doris Kearns",
+                        AuthorFirst = "Doris",
+                        AuthorMiddle = "Kearns ",
                         AuthorLast = "Goodwin",
                         Publisher = "Simon & Schuster",
                         ISBN = "978-0743270755",
@@ -60,7 +61,8 @@ namespace Assignment5.Models
                     new Book
                     {
                         Title = "American Ulysses",
-                        AuthorFirst = "Ronald C.",
+                        AuthorFirst = "Ronald",
+                        AuthorMiddle = "C. ",
                         AuthorLast = " White",
                         Publisher = "Random House",
                         ISBN = "978-0812981254",

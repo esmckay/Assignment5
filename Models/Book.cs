@@ -17,6 +17,7 @@ namespace Assignment5.Models
         public string Title { get; set; }
         [Required]
         public string AuthorFirst { get; set; }
+        public string? AuthorMiddle { get; set; } = "";
         [Required]
         public string AuthorLast { get; set; }
         [Required]

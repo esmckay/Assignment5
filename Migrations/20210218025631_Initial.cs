@@ -14,6 +14,7 @@ namespace Assignment5.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AuthorFirst = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AuthorMiddle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AuthorLast = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Publisher = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ISBN = table.Column<string>(type: "nvarchar(max)", nullable: false),
