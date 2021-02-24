@@ -57,11 +57,16 @@ namespace Assignment5
 
             app.UseEndpoints(endpoints =>
             {
+                //Make it so the user can type in something in the URL to navigate around the pages.
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "pagination",
+                    "P{page}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapDefaultControllerRoute();
             });
 
+            //Ensures data is populated
             SeedData.EnsurePopulated(app);
         }
     }
