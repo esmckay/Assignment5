@@ -1,0 +1,15 @@
+﻿@model Book
+
+<div class="bg-dark list-group-item text-white text-md-left">
+
+    <h5>Book Title: @Model.Title</h5>
+    <h6>Written By: @Model.AuthorFirst @Model.AuthorMiddle@Model.AuthorLast</h6>
+    <p>Publisher: @Model.Publisher</p>
+    <p>ISBN #: @Model.ISBN</p>
+    <p>Classifcation/Category: @Model.Category</p>
+    <div class="card-text p-1">
+        <p>Price: @Model.Price</p>
+        <p>Number of Pages: @Model.NumPages</p>
+    </div>
+
+</div>

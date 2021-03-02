@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Assignment5</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -12,8 +12,9 @@
     <header class="bg-info text-center p-3">
         <h4>Welcome to our library!</h4>
     </header>
-    <header class="bg-dark text-white text-center">
+    <header id="blah" class="bg-dark text-white text-center">
         <h1>Like Amazon:</h1>
+        <vc:navigation-menu />
     </header>
     <div>
         @RenderBody()
