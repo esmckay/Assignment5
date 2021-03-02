@@ -23,6 +23,7 @@ namespace Assignment5.Controllers
             _repository = repository;
         }
 
+        //Add in slight changes to make sure our VC is working as well as our navigation and page menu lengths
         public IActionResult Index(string category, int page = 1)
         {
             return View(new BookListViewModel

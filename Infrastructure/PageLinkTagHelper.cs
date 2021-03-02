@@ -16,7 +16,7 @@ namespace Assignment5.Infrastructure
     [HtmlTargetElement("div", Attributes = "page-model")]
     public class PageLinkTagHelper : TagHelper
     {
-        //Declare variables
+        //Declare variables and Add in our dictionary 
         private IUrlHelperFactory urlHelperFactory;
 
         public PageLinkTagHelper (IUrlHelperFactory hp)
@@ -49,6 +49,7 @@ namespace Assignment5.Infrastructure
             {
                 TagBuilder tag = new TagBuilder("a");
 
+                //Switch around our determining variable to make it the PAgeUrlValues
                 PageUrlValues["page"] = i;
                 tag.Attributes["href"] = urlHelper.Action(PageAction,
                     PageUrlValues);

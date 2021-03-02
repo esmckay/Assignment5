@@ -10,6 +10,7 @@ namespace Assignment5.Models.ViewModels
         public IEnumerable<Book> Books { get; set; }
         public PagingInfo PagingInfo { get; set; }
 
+        //Add in our category variable
         public string Category { get; set; }
     }
 }

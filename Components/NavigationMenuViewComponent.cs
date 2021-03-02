@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assignment5.Models;
 
+
+//Create our View component
 namespace Assignment5.Components
 {
     public class NavigationMenuViewComponent : ViewComponent
