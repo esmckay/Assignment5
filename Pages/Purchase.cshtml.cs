@@ -39,10 +39,12 @@ namespace Assignment5.Pages
             return RedirectToPage(new { returnUrl = returnUrl });
         }
 
+        //McKay help
         public IActionResult OnPostRemove(long bookID, string returnUrl)
         {
             Cart.RemoveLine(Cart.Lines.First(cl =>
-                cl.Book.BookID == bookID).Book);
+                cl.Book.BookID == BookID).Book);
+
             return RedirectToPage(new { returnUrl = returnUrl });
         }
     }

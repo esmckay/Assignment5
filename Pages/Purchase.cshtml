@@ -25,6 +25,9 @@
             <td class="text-center">@line.Quantity</td>
             <td class="text-right">$@line.Book.Price</td>
             <td class="text-right">@((line.Quantity * line.Book.Price).ToString("c"))</td>
+
+
+            @*McKay help*@
             <td class="text-center">
                 <form asp-page-handler="Remove" method="post">
                     <input type="hidden" name="bookID"
