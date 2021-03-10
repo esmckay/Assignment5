@@ -28,8 +28,9 @@ namespace Assignment5.Models
         [Required]
         public string Category {get; set;}
         [Required]
-        public string Price { get; set; }
+        public double Price { get; set; }
         [Required]
         public int NumPages { get; set; }
+
     }
 }
