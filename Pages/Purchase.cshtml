@@ -1,7 +1,10 @@
-﻿@page
+﻿
+@page
 @model Assignment5.Pages.PurchaseModel
 @{
 }
+
+@*html page to display our cart*@
 
 <h2>Your Cart</h2>
 
@@ -27,7 +30,6 @@
             <td class="text-right">@((line.Quantity * line.Book.Price).ToString("c"))</td>
 
 
-            @*McKay help*@
             <td class="text-center">
                 <form asp-page-handler="Remove" method="post">
                     <input type="hidden" name="bookID"

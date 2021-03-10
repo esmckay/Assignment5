@@ -9,20 +9,14 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <div class="bg-dark text-white p-2">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col navbar-brand">SPORTS STORE</div>
-                <div class="col-6 text-right">
-                    <vc:cart-summary />
-                </div>
-            </div>
-        </div>
-    </div>
     @*bootstrap in the shared layout*@
     @*Add in the VC to display our navigation menu*@
+    @*Add in the VC to display our cart summary*@
     <header class="bg-info text-center p-3">
         <h4>Welcome to our library!</h4>
+        <div class="col-9 text-right">
+            <vc:cart-summary />
+        </div>
     </header>
     <header id="blah" class="bg-dark text-white text-center">
         <h1>Like Amazon:</h1>

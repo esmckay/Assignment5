@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Assignment5.Infrastructure;
 using Assignment5.Models;
 
+//purchase model etc.
 namespace Assignment5.Pages
 {
     public class PurchaseModel : PageModel
@@ -39,11 +40,10 @@ namespace Assignment5.Pages
             return RedirectToPage(new { returnUrl = returnUrl });
         }
 
-        //McKay help
         public IActionResult OnPostRemove(long bookID, string returnUrl)
         {
             Cart.RemoveLine(Cart.Lines.First(cl =>
-                cl.Book.BookID == BookID).Book);
+                cl.Book.BookID == bookID).Book);
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }

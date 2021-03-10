@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Assignment5.Infrastructure;
 
+//Idk what most this stuff does to be honest with ya but I know that without it we wouldn't be able to add or remove anything from the cart
 namespace Assignment5.Models
 {
     public class SessionCart : Cart
