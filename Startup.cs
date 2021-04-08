@@ -1,6 +1,7 @@
 using Assignment5.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,10 +30,21 @@ namespace Assignment5
 
             services.AddDbContext<FavBooksContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:FavoriteBooksConnection"]);
+                options.UseSqlite(Configuration["ConnectionStrings:FavoriteBooksConnection"]);
             });
 
             services.AddScoped<IBookRepository, EFBookRepository>();
+            services.AddScoped<IOrderRepository, EFOrderRepository>();
+
+            services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,17 +63,41 @@ namespace Assignment5
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                //Make it so the user can type in something in the URL to navigate around the pages.
+                endpoints.MapControllerRoute("catpage",
+                   "{category}/{pageNum:int}",
+                   new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("pageNum",
+                    "{pageNum:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("category",
+                    "{category}",
+                    new { Controller = "Home", action = "Index", page = 1 });
+
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "pagination",
+                    "P{pageNum}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
+
+                endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
             });
 
+            //Ensures data is populated
             SeedData.EnsurePopulated(app);
         }
     }

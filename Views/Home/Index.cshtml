@@ -1,27 +1,24 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Knockoff Amazon";
 }
 
-@model IQueryable<Book>
+@model BookListViewModel
 
 @*Header for our home page as well as the for each to loop through and display the different books and their info with bootstrap styling to separate out the different books*@
-<header class="text-center">
-    <h1>Like Amazon:</h1>
-</header>
 
-<body class="text-center">
-    @foreach (var x in Model)
+@*Switch up to display partial views*@
+<div class="text-center">
+    @foreach (var x in Model.Books)
     {
-        <div class="list-group-item text-left">
-            <h5>Book Title: @x.Title</h5>
-            <h6>Written By: @x.AuthorFirst @x.AuthorMiddle@x.AuthorLast</h6>
-            <p>Publisher: @x.Publisher</p>
-            <p>ISBN #: @x.ISBN</p>
-            <p>Classifcation/Category: @x.Category</p>
-            <p>Price: @x.Price</p>
-
-        </div>
+        <partial name="BookSummary" model="x" />
     }
-</body>
+
+    <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
+         page-class-normal="btn-outline-dark"
+         page-class-selected="btn-primary" page-url-category="@Model.Category"
+         class="btn-group-sm m-1"></div>
+</div>
+
+
 
    

@@ -15,7 +15,21 @@ namespace Assignment5.Models
             _context = context;
         }
 
-
         public IQueryable<Book> Books => _context.Books;
+
+        public void CreateBook(Book b)
+        {
+            _context.Add(b);
+            _context.SaveChanges();
+        }
+        public void DeleteBook(Book b)
+        {
+            _context.Remove(b);
+            _context.SaveChanges();
+        }
+        public void SaveBook(Book b)
+        {
+            _context.SaveChanges();
+        }
     }
 }

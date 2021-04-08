@@ -3,18 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Assignment5</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     @*bootstrap in the shared layout*@
-<header class="text-center">
-    <h4>Welcome to our library!</h4>
-</header>
-   <div>
-       @RenderBody()
-   </div>
-   
+    @*Add in the VC to display our navigation menu*@
+    @*Add in the VC to display our cart summary*@
+    <header class="bg-info text-center p-3">
+        <h4>Welcome to our library!</h4>
+        <div class="col-9 text-right">
+            <vc:cart-summary />
+        </div>
+    </header>
+    <header id="blah" class="bg-dark text-white text-center">
+        <h1>Like Amazon:</h1>
+        <vc:navigation-menu />
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <script src="_framework/blazor.server.js"></script>
+
 </body>
 </html>
