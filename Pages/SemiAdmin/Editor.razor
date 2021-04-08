@@ -1,0 +1,91 @@
+﻿@page "/semiadmin/products/edit/{id:long}"
+@page "/semiadmin/products/create"
+@inherits OwningComponentBase<IBookRepository>
+<style>
+    div.validation-message {
+        color: rgb(220, 53, 69);
+        font-weight: 500
+    }
+</style>
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a Book</h3>
+<EditForm Model="Book" OnValidSubmit="SaveBook">
+    <DataAnnotationsValidator />
+    @if (Book.BookID != 0)
+    {
+        <div class="form-group">
+            <label>ID</label>
+            <input class="form-control" disabled value="@Book.BookID" />
+        </div>
+    }
+    <div class="form-group">
+        <label>Title</label>
+        <ValidationMessage For="@(() => Book.Title)" />
+        <InputText class="form-control" @bind-Value="Book.Title" />
+    </div>
+    <div class="form-group">
+        <label>Author First</label>
+        <ValidationMessage For="@(() => Book.AuthorFirst)" />
+        <InputText class="form-control" @bind-Value="Book.AuthorFirst" />
+    </div>
+    <div class="form-group">
+        <label>Author Last</label>
+        <ValidationMessage For="@(() => Book.AuthorLast)" />
+        <InputText class="form-control" @bind-Value="Book.AuthorLast" />
+    </div>
+    <div class="form-group">
+        <label>Publisher</label>
+        <ValidationMessage For="@(() => Book.Publisher)" />
+        <InputText class="form-control" @bind-Value="Book.Publisher" />
+    </div>
+    <div class="form-group">
+        <label>ISBN</label>
+        <ValidationMessage For="@(() => Book.ISBN)" />
+        <InputText class="form-control" @bind-Value="Book.ISBN" />
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <ValidationMessage For="@(() => Book.Category)" />
+        <InputText class="form-control" @bind-Value="Book.Category" />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <ValidationMessage For="@(() => Book.Price)" />
+        <InputNumber class="form-control" @bind-Value="Book.Price" />
+    </div>
+    <div class="form-group">
+        <label>Number of Pages</label>
+        <ValidationMessage For="@(() => Book.NumPages)" />
+        <InputNumber class="form-control" @bind-Value="Book.NumPages" />
+    </div>
+    <button type="submit" class="btn btn-@ThemeColor">Save</button>
+    <NavLink class="btn btn-secondary" href="/semiadmin/books">Cancel</NavLink>
+</EditForm>
+@code {
+    public IBookRepository Repository => Service;
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+    [Parameter]
+    public long Id { get; set; } = 0;
+    public Book Book { get; set; } = new Book();
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            Book = Repository.Books.FirstOrDefault(p => p.BookID == Id);
+        }
+    }
+    public void SaveBook()
+    {
+        if (Id == 0)
+        {
+            Repository.CreateBook(Book);
+        }
+        else
+        {
+            Repository.SaveBook(Book);
+        }
+        NavManager.NavigateTo("/semiadmin/books");
+    }
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Create" : "Edit";
+}

@@ -1,0 +1,28 @@
+﻿@page "/semiadmin/products/details/{id:long}"
+<h3 class="bg-info text-white text-center p-1">Details</h3>
+<table class="table table-sm table-bordered table-striped">
+    <tbody>
+        <tr><th>ID</th><td>@Book.BookID</td></tr>
+        <tr><th>Title</th><td>@Book.Title</td></tr>
+        <tr><th>Author</th><td>@Book.AuthorFirst @Book.AuthorLast</td></tr>
+        <tr><th>Publisher</th><td>@Book.Publisher</td></tr>
+        <tr><th>Category</th><td>@Book.Category</td></tr>
+        <tr><th>ISBN</th><td>@Book.ISBN</td></tr>
+        <tr><th>Price</th><td>@Book.Price.ToString("C")</td></tr>
+        <tr><th>NumPages</th><td>@Book.NumPages</td></tr>
+    </tbody>
+</table>
+<NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+<NavLink class="btn btn-secondary" href="/semiadmin">Back</NavLink>
+@code {
+    [Inject]
+    public IBookRepository Repository { get; set; }
+    [Parameter]
+    public long Id { get; set; }
+    public Book Book { get; set; }
+    protected override void OnParametersSet()
+    {
+        Book = Repository.Books.FirstOrDefault(p => p.BookID == Id);
+    }
+    public string EditUrl => $"/semiadmin/products/edit/{Book.BookID}";
+}

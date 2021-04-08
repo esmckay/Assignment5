@@ -1,7 +1,7 @@
 ﻿@page
 @model IdentityUsersModel
 @using Microsoft.AspNetCore.Identity
-<h3 class="bg-primary text-white text-center p-2">Admin User</h3>
+<h3 class="bg-primary text-white text-center p-2">SemiAdmin User</h3>
 <table class="table table-sm table-striped table-bordered">
     <tbody>
         <tr><th>User</th><td>@Model.AdminUser.UserName</td></tr>
@@ -20,7 +20,7 @@
         public IdentityUser AdminUser { get; set; }
         public async Task OnGetAsync()
         {
-            AdminUser = await userManager.FindByNameAsync("Larry");
+            AdminUser = await userManager.FindByNameAsync("Admin");
         }
     }
 }

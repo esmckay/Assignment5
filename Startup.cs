@@ -53,6 +53,13 @@ namespace Assignment5
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
+
+            //services.AddDbContext<SemiAdminDbContext>(options =>
+            //    options.UseSqlite(
+            //        Configuration["ConnectionStrings:SemiAdminConnection"]));
+
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<SemiAdminDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,6 +116,8 @@ namespace Assignment5
             //Ensures data is populated
             SeedData.EnsurePopulated(app);
             IdentitySeedData.EnsurePopulated(app);
+            //SemiAdminSeedData.EnsurePopulated(app);
+            
         }
     }
 }

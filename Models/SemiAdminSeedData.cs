@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Assignment5.Models
 {
-    public static class IdentitySeedData
+    public static class SemiAdminSeedData
     {
         private const string adminUser = "Larry";
-        private const string adminPassword = "Secret123$";
+        private const string adminPassword = "larry";
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
             AppIdentityDbContext context = app.ApplicationServices
