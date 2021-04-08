@@ -3,14 +3,16 @@ using System;
 using Assignment5.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Assignment5.Migrations
 {
     [DbContext(typeof(FavBooksContext))]
-    partial class FavBooksContextModelSnapshot : ModelSnapshot
+    [Migration("20210408160213_Orders")]
+    partial class Orders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,9 +116,6 @@ namespace Assignment5.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<bool>("Shipped")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("State")
                         .IsRequired()

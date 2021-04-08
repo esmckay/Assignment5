@@ -1,0 +1,76 @@
+﻿@page "/admin/books"
+@page "/admin"
+@inherits OwningComponentBase<IBookRepository>
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>ISBN</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Num of Pages</th>
+            <td />
+        </tr>
+    </thead>
+    <tbody>
+        @if (ProductData?.Count() > 0)
+        {
+            @foreach (Book b in ProductData)
+            {
+                <tr>
+                    <td>@b.BookID</td>
+                    <td>@b.Title</td>
+                    <td>@b.AuthorFirst @b.AuthorMiddle@b.AuthorLast</td>
+                    <td>@b.Publisher</td>
+                    <td>@b.ISBN</td>
+                    <td>@b.Category</td>
+                    <td>@b.Price.ToString("c")</td>
+                    <td>@b.NumPages</td>
+                    <td>
+                        <NavLink class="btn btn-info btn-sm"
+                                 href="@GetDetailsUrl(b.BookID)">
+                            Details
+                        </NavLink>
+                        <NavLink class="btn btn-warning btn-sm"
+                                 href="@GetEditUrl(b.BookID)">
+                            Edit
+                        </NavLink>
+                        <button class="btn btn-danger btn-sm"
+                                @onclick="@(e => DeleteBook(b))">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No Products</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<NavLink class="btn btn-primary" href="/admin/products/create">Create</NavLink>
+@code {
+    public IBookRepository Repository => Service;
+    public IEnumerable<Book> ProductData { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+    public async Task UpdateData()
+    {
+        ProductData = await Repository.Books.ToListAsync();
+    }
+    public async Task DeleteBook(Book b)
+    {
+        Repository.DeleteBook(b);
+        await UpdateData();
+    }
+    public string GetDetailsUrl(long id) => $"/admin/products/details/{id}";
+    public string GetEditUrl(long id) => $"/admin/products/edit/{id}";
+}
